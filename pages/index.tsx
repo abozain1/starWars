@@ -9,10 +9,8 @@ interface props {
 }
 
 const Home = ({ data, error }: props) => {
-  console.log("🚀 ~ file: index.tsx:11 ~ Home ~ data:", data);
-  if (!!error) {
-    errorHandler(error);
-  }
+  if (!!error) errorHandler(error);
+
   return (
     <div>
       <h1>My Page</h1>

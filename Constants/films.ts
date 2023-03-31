@@ -4,4 +4,5 @@ export interface Film {
   release_date: string;
   producer: string;
   url: string;
+  starships: string[];
 }

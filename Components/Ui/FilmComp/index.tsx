@@ -12,7 +12,10 @@ export default function FilmComp({
   function onFilmClicked(filmUrl: string) {
     const splitted = filmUrl.split("/");
     const id = splitted[splitted.length - 2];
-    push(`film/${id}`);
+    push({
+      pathname: "/film/[filmId]",
+      query: { filmId: id },
+    });
   }
   return (
     <div>
