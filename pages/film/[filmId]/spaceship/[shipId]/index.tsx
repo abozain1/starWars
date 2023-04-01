@@ -1,11 +1,11 @@
 import { GetServerSidePropsContext } from "next";
-import SpaceShipView from "./view";
 import ErrorComp from "@/Components/Ui/ErrorComp";
 import { dynamicGetReq } from "@/Components/Helpers/apiHandler";
 import { QueryClient, dehydrate, useQuery } from "react-query";
 import { useRouter } from "next/router";
 import Loading from "@/Components/Ui/LoadingComp";
 import { StarShip } from "@/Constants/ships";
+import { SpaceShipView } from "./view";
 
 export default function SpaceShipPage() {
   const { query } = useRouter();

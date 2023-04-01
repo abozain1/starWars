@@ -1,17 +1,94 @@
 import { StarShip } from "@/Constants/ships";
+import {
+  Card,
+  Image,
+  Text,
+  ActionIcon,
+  Badge,
+  Group,
+  Center,
+  Avatar,
+  createStyles,
+  rem,
+} from "@mantine/core";
 
-export default function SpaceShipView({
+const useStyles = createStyles((theme) => ({
+  card: {
+    maxWidth: "40rem",
+    margin: " 2rem auto",
+    minHeight: "30rem",
+    position: "relative",
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+  },
+
+  rating: {
+    position: "absolute",
+    top: theme.spacing.xs,
+    right: rem(12),
+    pointerEvents: "none",
+  },
+
+  title: {
+    display: "block",
+    marginTop: theme.spacing.md,
+    marginBottom: rem(5),
+  },
+
+  action: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[0],
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[5]
+          : theme.colors.gray[1],
+    }),
+  },
+
+  footer: {
+    marginTop: theme.spacing.md,
+  },
+}));
+
+export function SpaceShipView({
   model,
   name,
-  consumables,
+  crew,
+  manufacturer,
   cargo_capacity,
 }: StarShip) {
+  const { classes } = useStyles();
+
   return (
-    <div>
-      <p>{model}</p>
-      <p>{name}</p>
-      <p>{consumables}</p>
-      <p>{cargo_capacity}</p>
-    </div>
+    <Card withBorder radius="md" className={classes.card}>
+      <Card.Section>
+        {" "}
+        <Image height={300} src={"/starship.jpg"} />
+      </Card.Section>
+
+      <Badge
+        className={classes.rating}
+        variant="gradient"
+        gradient={{ from: "yellow", to: "red" }}
+      >
+        {name}
+      </Badge>
+
+      <Text className={classes.title} fw={500} component="a">
+        Model : {model}
+      </Text>
+      <Text fz="sm" c="dimmed" mt="sm">
+        Cargo : {cargo_capacity}
+      </Text>
+      <Text fz="sm" c="dimmed" mt="sm">
+        Manufacturer : {manufacturer}
+      </Text>
+      <Text fz="sm" c="dimmed" mt="sm">
+        Crew : {crew}
+      </Text>
+    </Card>
   );
 }
