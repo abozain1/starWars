@@ -1,33 +1,43 @@
-import errorHandler from "@/Components/Ui/errorHandler";
+import { dynamicGetReq } from "@/Components/Helpers/apiHandler";
+import ErrorComp from "@/Components/Ui/ErrorComp";
 import FilmComp from "@/Components/Ui/FilmComp";
+import Loading from "@/Components/Ui/LoadingComp";
 import { Film } from "@/Constants/films";
-import api from "@/lib/axios";
 import React from "react";
-interface props {
-  data: Film[];
-  error: string;
-}
+import { QueryClient, dehydrate, useQuery } from "react-query";
 
-const Home = ({ data, error }: props) => {
-  if (!!error) errorHandler(error);
-
+const Home = () => {
+  const { data, isError, isLoading } = useQuery<{ results: Film[] }>(
+    "films",
+    () => dynamicGetReq("films")
+  );
+  if (!!isError) {
+    return <ErrorComp />;
+  }
   return (
     <div>
       <h1>My Page</h1>
-      {data.map((ele) => (
-        <FilmComp {...ele} />
-      ))}
+      {isLoading ? (
+        <Loading />
+      ) : !data?.results ? (
+        <p>no data...</p>
+      ) : (
+        data.results?.map((ele) => <FilmComp {...ele} />)
+      )}
     </div>
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
   try {
-    const { data } = await api.get<{ results: Film[] }>("films");
-    return { props: { data: data.results } };
-  } catch (e: any) {
-    return { props: { data: [], error: JSON.stringify(e) } };
-  }
+    await queryClient.fetchQuery("films", () => dynamicGetReq("films"));
+  } catch (error) {}
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 }
 
 export default Home;
