@@ -21,9 +21,7 @@ export default function SpaceShipPage() {
   ) : !data ? (
     <p>no data...</p>
   ) : (
-    <>
-      <SpaceShipView {...data} />
-    </>
+    <SpaceShipView {...data} />
   );
 }
 

@@ -1,16 +1,5 @@
 import { StarShip } from "@/Constants/ships";
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  Badge,
-  Group,
-  Center,
-  Avatar,
-  createStyles,
-  rem,
-} from "@mantine/core";
+import { Card, Image, Text, Badge, createStyles, rem } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -33,23 +22,6 @@ const useStyles = createStyles((theme) => ({
     display: "block",
     marginTop: theme.spacing.md,
     marginBottom: rem(5),
-  },
-
-  action: {
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[6]
-        : theme.colors.gray[0],
-    ...theme.fn.hover({
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[5]
-          : theme.colors.gray[1],
-    }),
-  },
-
-  footer: {
-    marginTop: theme.spacing.md,
   },
 }));
 
