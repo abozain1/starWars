@@ -57,14 +57,14 @@ export default function FilmComp({
   const id = splitted[splitted.length - 2];
 
   return (
-    <Link href={`film/${id}`}>
-      <Card
-        key={title}
-        shadow="md"
-        radius="md"
-        className={classes.card}
-        padding="xl"
-      >
+    <Card
+      key={title}
+      shadow="md"
+      radius="md"
+      className={classes.card}
+      padding="xl"
+    >
+      <Link href={`film/${id}`}>
         <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
           {title}
         </Text>
@@ -77,7 +77,7 @@ export default function FilmComp({
         <Text fz="sm" c="dimmed" mt="sm">
           Director : {director}
         </Text>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }

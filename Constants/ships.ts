@@ -3,4 +3,6 @@ export interface StarShip {
   name: string;
   consumables: string;
   cargo_capacity: string;
+  crew: string;
+  manufacturer: string;
 }

@@ -11,7 +11,6 @@ import {
   Group,
   Title,
   Text,
-  Card,
   SimpleGrid,
   Container,
   rem,
